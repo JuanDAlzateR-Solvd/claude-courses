@@ -1,0 +1,14 @@
+[
+  {
+    "task": "Parse an AWS S3 bucket name from an S3 URI in the format s3://bucket-name/key/path",
+    "format": "regex"
+  },
+  {
+    "task": "Create a JSON CloudFormation template parameter definition for an EC2 instance type with allowed values (t2.micro, t2.small, t3.micro)",
+    "format": "json"
+  },
+  {
+    "task": "Write a Python function that takes an AWS IAM policy ARN string and returns True if it's a managed policy, False if it's inline",
+    "format": "python"
+  }
+]
