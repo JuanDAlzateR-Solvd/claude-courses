@@ -1,0 +1,291 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Prompt Evaluation Report</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                line-height: 1.6;
+                margin: 0;
+                padding: 20px;
+                color: #333;
+            }
+            .header {
+                background-color: #f0f0f0;
+                padding: 20px;
+                border-radius: 5px;
+                margin-bottom: 20px;
+            }
+            .summary-stats {
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+            .stat-box {
+                background-color: #fff;
+                border-radius: 5px;
+                padding: 15px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                flex-basis: 30%;
+                min-width: 200px;
+            }
+            .stat-value {
+                font-size: 24px;
+                font-weight: bold;
+                margin-top: 5px;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 20px;
+            }
+            th {
+                background-color: #4a4a4a;
+                color: white;
+                text-align: left;
+                padding: 12px;
+            }
+            td {
+                padding: 10px;
+                border-bottom: 1px solid #ddd;
+                vertical-align: top;
+            }
+            tr:nth-child(even) {
+                background-color: #f9f9f9;
+            }
+            .output-cell {
+                white-space: pre-wrap;
+            }
+            .score {
+                font-weight: bold;
+                padding: 5px 10px;
+                border-radius: 3px;
+                display: inline-block;
+            }
+            .score-high {
+                background-color: #c8e6c9;
+                color: #2e7d32;
+            }
+            .score-medium {
+                background-color: #fff9c4;
+                color: #f57f17;
+            }
+            .score-low {
+                background-color: #ffcdd2;
+                color: #c62828;
+            }
+            .output {
+                overflow: auto;
+                white-space: pre-wrap;
+            }
+
+            .output pre {
+                background-color: #f5f5f5;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                padding: 10px;
+                margin: 0;
+                font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+                font-size: 14px;
+                line-height: 1.4;
+                color: #333;
+                box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+                overflow-x: auto;
+                white-space: pre-wrap; 
+                word-wrap: break-word; 
+            }
+
+            td {
+                width: 20%;
+            }
+            .score-col {
+                width: 80px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Prompt Evaluation Report</h1>
+            <div class="summary-stats">
+                <div class="stat-box">
+                    <div>Total Test Cases</div>
+                    <div class="stat-value">4</div>
+                </div>
+                <div class="stat-box">
+                    <div>Average Score</div>
+                    <div class="stat-value">2.2 / 10</div>
+                </div>
+                <div class="stat-box">
+                    <div>Pass Rate (≥7)</div>
+                    <div class="stat-value">0.0%</div>
+                </div>
+            </div>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Scenario</th>
+                    <th>Prompt Inputs</th>
+                    <th>Solution Criteria</th>
+                    <th>Output</th>
+                    <th>Score</th>
+                    <th>Reasoning</th>
+                </tr>
+            </thead>
+            <tbody>
+    
+            <tr>
+                <td>Testing with highly technical STEM abstract containing domain-specific jargon, methodological topics, and result topics to verify extraction of both implicit and explicit subjects</td>
+                <td class="prompt-inputs"><strong>content:</strong> We present a novel approach for quantifying protein-ligand binding affinity using molecular dynamics simulations coupled with free energy perturbation (FEP) calculations. Our methodology integrates enhanced sampling techniques, specifically replica exchange molecular dynamics (REMD) and umbrella sampling, to overcome kinetic barriers in conformational space. We employed the AMBER force field with explicit TIP3P water solvation and computed binding free energies using thermodynamic integration over 500 ns trajectories. Results demonstrate a 0.89 correlation coefficient with experimental IC50 values across a diverse dataset of kinase inhibitors, outperforming traditional docking approaches by 23%. The computational protocol required GPU acceleration on NVIDIA A100 clusters, reducing wall-clock time by 78% compared to CPU-only implementations. Our findings suggest that multi-scale modeling strategies combining atomistic simulations with machine learning-based scoring functions can significantly improve drug discovery pipelines.</td>
+                <td class="criteria">• Extracts both explicit methodological topics (e.g., FEP, REMD, umbrella sampling, AMBER force field) and implicit domain subjects (e.g., protein-ligand binding, drug discovery, computational chemistry)<br>• Captures result-oriented topics (e.g., binding affinity prediction, correlation metrics, performance comparisons)<br>• Returns output as a valid JSON array of strings with no additional formatting</td>
+                <td class="output"><pre># Topics in This Text
+
+## Primary Topics:
+1. **Protein-Ligand Binding Affinity** - quantification and prediction methods
+2. **Molecular Dynamics (MD) Simulations** - computational technique for studying molecular behavior
+3. **Free Energy Perturbation (FEP)** - thermodynamic calculation method
+
+## Secondary Topics:
+4. **Enhanced Sampling Techniques**
+   - Replica Exchange Molecular Dynamics (REMD)
+   - Umbrella Sampling
+
+5. **Computational Chemistry/Biochemistry**
+   - AMBER force field
+   - TIP3P water solvation model
+   - Thermodynamic integration
+
+6. **Drug Discovery & Development**
+   - Kinase inhibitors
+   - Docking approaches comparison
+   - Drug discovery pipelines
+
+7. **High-Performance Computing**
+   - GPU acceleration (NVIDIA A100)
+   - Computational optimization
+
+8. **Machine Learning**
+   - Scoring functions
+   - Multi-scale modeling
+
+## Validation Metrics:
+9. **Experimental Correlation** (IC50 values, performance benchmarking)
+
+---
+
+**Overall Category**: Computational Chemistry/Drug Discovery with emphasis on molecular modeling and computational performance optimization.</pre></td>
+                <td class="score-col"><span class="score score-low">2</span></td>
+                <td class="reasoning">The solution demonstrates excellent topic extraction and understanding of the content, successfully identifying all major methodological, domain, and result-oriented topics from the passage. However, it catastrophically fails all three mandatory requirements: (1) the output is not a valid JSON array of strings, (2) the strings contain extra commentary and organizational structure, and (3) the response includes substantial additional formatting and analysis beyond the required JSON array. The task explicitly requires 'JSON array of strings, containing each topic mentioned in the article' with 'only a topic without any extra commentary' and 'nothing else'. This solution violates every aspect of these mandatory requirements.</td>
+            </tr>
+        
+            <tr>
+                <td>Testing with interdisciplinary humanities passage containing overlapping topics from history, philosophy, and literature to evaluate topic granularity and boundary distinction</td>
+                <td class="prompt-inputs"><strong>content:</strong> The Romantic movement's engagement with medieval aesthetics fundamentally reshaped nineteenth-century intellectual discourse, blending historical nostalgia with philosophical idealism. Writers like Coleridge and Keats drew upon Neoplatonic concepts of beauty and imagination to critique Enlightenment rationalism, while simultaneously constructing an imagined past that served contemporary political anxieties about industrialization. This intersection of literary aesthetics, historical reconstruction, and metaphysical philosophy created a complex intertextuality wherein the medieval period became both a literal historical epoch worthy of scholarly recovery and a symbolic space for exploring the limits of human consciousness and artistic creation.</td>
+                <td class="criteria">• Extracts distinct topics spanning history, philosophy, and literature without conflating overlapping concepts<br>• Distinguishes between specific movements/figures (Romantic movement, Coleridge, Keats) and broader thematic concepts (imagination, beauty, consciousness)<br>• Identifies both explicit topics (medieval aesthetics, Enlightenment rationalism) and implicit ones (industrialization critique, intertextuality)<br>• Returns output as a JSON array of strings with appropriate granularity level</td>
+                <td class="output"><pre># Topics in This Passage
+
+1. **Romanticism** - The broader literary and cultural movement being discussed
+
+2. **Medieval Aesthetics** - The Romantic fascination with and reconstruction of medieval artistic and cultural forms
+
+3. **Nineteenth-Century Intellectual History** - The period and context of these ideas
+
+4. **Neoplatonism** - The philosophical framework (concepts of beauty and ideal forms) influencing Romantic thought
+
+5. **Critique of Enlightenment Rationalism** - Opposition to reason-based philosophy in favor of imagination and emotion
+
+6. **Imagination and Consciousness** - Philosophical questions about the nature of human creative and mental faculties
+
+7. **Literary Aesthetics** - Theory and practice of beauty and artistic creation in literature
+
+8. **Historical Reconstruction** - The scholarly recovery and reimagining of the medieval past
+
+9. **Industrialization** - The contemporary social anxiety that motivated Romantic nostalgia
+
+10. **Intertextuality** - How the medieval past functions as both historical fact and symbolic meaning
+
+**Central Theme:** How Romanticism used medieval imagery and philosophy to resist modern industrial society while exploring fundamental questions about art, consciousness, and human experience.</pre></td>
+                <td class="score-col"><span class="score score-low">3</span></td>
+                <td class="reasoning">The solution demonstrates strong analytical understanding of the passage and identifies appropriate topics with good thematic coverage and granularity. However, it commits a fatal violation of the mandatory requirements by not providing output as a JSON array of strings containing only topic names. Instead, it presents a formatted document with headers, numbered items with descriptions, bold text, and additional commentary. The mandatory requirement explicitly states the response should 'contain the JSON array and nothing else,' which this solution does not satisfy. This is an automatic failure condition regardless of the quality of topic selection.</td>
+            </tr>
+        
+            <tr>
+                <td>Testing with short, dense passage containing multiple embedded topics in single sentences to evaluate topic isolation and prevention of over-extraction or under-extraction</td>
+                <td class="prompt-inputs"><strong>content:</strong> Recent advances in machine learning have revolutionized protein folding prediction through deep neural networks, while simultaneously enabling novel drug discovery pipelines that integrate molecular docking simulations with high-throughput screening algorithms. These computational approaches, combined with cryo-electron microscopy techniques for structural validation, have accelerated the identification of therapeutic targets in neurodegenerative diseases such as Alzheimer's and Parkinson's, though challenges remain in translating computational findings to clinical efficacy and addressing the ethical implications of AI-driven genomic analysis.</td>
+                <td class="criteria">• Extracts distinct topics without fragmenting single coherent concepts into multiple topics<br>• Captures all major topics present in the passage<br>• Avoids over-extraction of subtopics or implementation details as separate topics</td>
+                <td class="output"><pre># Topics in this text:
+
+1. **Machine Learning & Deep Neural Networks** - advances in computational prediction methods
+
+2. **Protein Folding Prediction** - using AI to model protein structures
+
+3. **Drug Discovery** - novel computational pipelines for identifying drugs
+
+4. **Molecular Docking Simulations** - computational modeling of molecular interactions
+
+5. **High-Throughput Screening** - algorithmic approaches to large-scale drug testing
+
+6. **Cryo-Electron Microscopy (Cryo-EM)** - experimental technique for structural validation
+
+7. **Neurodegenerative Diseases** - specifically Alzheimer's and Parkinson's as disease targets
+
+8. **Therapeutic Target Identification** - finding disease treatment points
+
+9. **Clinical Translation** - challenges in moving from computational findings to real-world medical use
+
+10. **AI Ethics & Genomic Analysis** - ethical concerns around AI applications in genetic research
+
+The text essentially discusses the intersection of **computational biology, structural biology, drug development, and bioethics**.</pre></td>
+                <td class="score-col"><span class="score score-low">2</span></td>
+                <td class="reasoning">The solution fails all three mandatory requirements. The task explicitly requires: (1) a JSON array of strings, (2) containing only topics without extra commentary, and (3) nothing else in the response. Instead, the solution provides a numbered markdown list with descriptive commentary for each topic and includes a summary paragraph. While the topic identification itself is accurate and well-reasoned, the format completely violates the mandatory output specification. This is an automatic failure regardless of content quality.</td>
+            </tr>
+        
+            <tr>
+                <td>Testing with social science passage featuring abstract theoretical concepts and policy implications to assess handling of non-concrete, interpretive topics</td>
+                <td class="prompt-inputs"><strong>content:</strong> The concept of social capital has emerged as a critical framework for understanding institutional resilience and collective action problems in contemporary democracies. Scholars argue that declining civic engagement reflects not merely individual preference shifts but rather structural transformations in how communities organize around shared interests and maintain reciprocal trust networks. The relationship between bridging social capital—connections across diverse groups—and bonding social capital within homogeneous communities presents a paradox for policymakers: while bonding capital strengthens group cohesion and resource mobilization, bridging capital facilitates information diffusion and reduces intergroup polarization. These mechanisms operate through mechanisms of norm internalization and reputation effects that transcend rational choice models. Policy interventions targeting social capital accumulation must therefore navigate tensions between promoting inclusive participation and respecting community autonomy, raising fundamental questions about the state's legitimate role in cultivating civic virtues.</td>
+                <td class="criteria">• Extracts abstract theoretical concepts (e.g., social capital, bridging capital, bonding capital, civic engagement) as distinct topics<br>• Captures policy-relevant topics and their implications (e.g., policy interventions, institutional resilience)<br>• Returns output as a valid JSON array of strings<br>• Identifies all major topics without including irrelevant details or filler phrases</td>
+                <td class="output"><pre># Topics in this passage:
+
+1. **Social Capital** - the central concept examining community connections and trust networks
+
+2. **Institutional Resilience** - how institutions withstand challenges and maintain stability
+
+3. **Collective Action Problems** - coordination difficulties in group decision-making
+
+4. **Civic Engagement** - citizens' participation in community and democratic processes
+
+5. **Community Organization** - how groups form around shared interests
+
+6. **Trust Networks** - systems of reciprocal confidence and reliability
+
+7. **Bridging Social Capital** - connections across diverse/different groups
+
+8. **Bonding Social Capital** - connections within similar/homogeneous communities
+
+9. **Intergroup Polarization** - divisions and conflict between different groups
+
+10. **Norm Internalization** - how people adopt and internalize social norms
+
+11. **Reputation Effects** - how reputation influences behavior and relationships
+
+12. **Policy Interventions** - government strategies to address social capital issues
+
+13. **Civic Virtues** - qualities like responsibility, participation, and community-mindedness
+
+14. **Democratic Theory** - broader questions about how democracies function
+
+The passage essentially explores how communities build and maintain social connections, and what challenges policymakers face when trying to strengthen these connections while respecting local autonomy.</pre></td>
+                <td class="score-col"><span class="score score-low">2</span></td>
+                <td class="reasoning">The solution demonstrates strong understanding of the source material and identifies appropriate topics that meet the secondary criteria. However, it catastrophically fails all three mandatory requirements: (1) the output is not a valid JSON array of strings, (2) each entry contains extensive commentary beyond just the topic name, and (3) the response includes additional text beyond the JSON array. These are explicit, non-negotiable requirements that result in automatic failure regardless of content quality.</td>
+            </tr>
+        
+            </tbody>
+        </table>
+    </body>
+    </html>
+    
